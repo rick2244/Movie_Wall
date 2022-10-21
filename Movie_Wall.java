@@ -169,7 +169,7 @@ public class Movie_Wall {
 	      File file = new File(file2);
 	      FileReader fr = new FileReader(file);
 	      BufferedReader br = new BufferedReader(fr);
-	      String line = " ";
+	      String line = "";
 	      int cnt = 0;
 	      while ((line = br.readLine()) != null) {
 	    	  String res = ""; //is used to create a easy string that contains info 
@@ -232,6 +232,19 @@ public class Movie_Wall {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter the name of an actor (or \"EXIT\" to quit): ");
 		String actor = sc.nextLine();
+		String[] actor2 = actor.split(" ");
+		for(int i = 0; i < actor2.length; i++) {
+			actor2[i] = actor2[i].substring(0,1).toUpperCase() + actor2[i].substring(1, actor2[i].length());
+		}
+		actor = "";
+		for(int b = 0; b < actor2.length; b++) {
+			if(b != actor2.length -1) {
+				actor+= actor2[b] + " ";
+			}
+			else {
+				actor+=actor2[b];
+			}
+		}
 		if(actor.equals("EXIT")) {
 			Truth = false;
 			System.out.println("Thanks for using the Movie Wall!");
@@ -273,7 +286,7 @@ public class Movie_Wall {
 				}	
 			}
 			//This if statment is used to make that if the index returned - 20 is under the 0 then it fixes it so that an index out of bounds error doesn't occur
-			else  if(start - 20 < 0) {
+			else if(start - 20 < 0) {
 				int new_start = 0;
 				for(int a = start; a >= 20; a--) {
 					new_start++;
@@ -313,9 +326,9 @@ public class Movie_Wall {
 					}
 				}
 			}else {
-				continue;
+					continue;
 			}
-		System.out.println();
+			System.out.println();
 		}
 		}
 	}
