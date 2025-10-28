@@ -1,44 +1,61 @@
-# Text Analyzer
+Movie Wall
 
-Function: Analyzes any webpage (by URL) and provide a summary of the text
+Author: Richard Dzreke
 
-Key Features: 
-- Accepting a URL to process the text
-- Using a property file to indicate words to avoid processing (like articles or common
-words)
-- Output Top 10 most common words in the text
-- Output the histogram of words - top 100 words and their count
-- Output the shortest and the longest occurring words
-- Executing the user commands provided as arguments and make the output
-accordingly
+Overview
 
-Reading content from a URL:
-- Achieved using the Java library jsoup
-- Example run: java TextAnalyzer https://en.wikipedia.org/wiki/Pet_door
-- The java.util.Properties class is used to read the property file
-(textanalyzer.properties) and subsequently to get the values stored in the property file. The property file
-will have some information on words to avoid when processing the text.
-      Example of property file:
-        #words to avoid processing
-        avoid=a,the,i,so
-- If a property file does not exist, default values will be used or execution of the parsing will be abandoned
+Movie Wall is a Java program that allows users to explore movie and actor data from a CSV file. You can search for actors, view the movies they starred in, and the roles they played. If the exact actor name isn’t found, the program suggests the closest match.
 
-Processing the contents:
-- Once the content is retrieved from the URL and after separating the text, the text contents
-are processed and kept in a doubly chained LinkedList, while avoiding words that populate the property file.
-- An ArrayList is used to keep track of the avoid words
+Features
 
-User Commands:
-- After processing words inputs are taken from the user to give relevent information on the data
-      Top10 Longest Shortest Summary
-      Will produce an output of
-      Top 10 words: Word1: count | Word2: count | Word3: count ....
-      Longest: Word1: count
-      Shortest: Word1: count
-      Summary: Total Words: count | Total Letters: count
-- Command taxonomy:
-      Top10 - top 10 occurring words
-      Longest - the longest word by character count (print the first word in case of ties)
-      Shortest - the shortest word by character count (print the first word in case of ties)
-      Summary - Prints total words, total letters
-  
+Loads movie and cast data from a CSV file.
+
+Allows users to search for actors by name.
+
+Displays all movies and roles for the selected actor.
+
+Suggests the closest matching actor if the search fails.
+
+Supports continuous searching until the user types EXIT.
+
+Uses binary search and custom similarity scoring for efficient and accurate lookups.
+
+Files
+
+Movie_Wall.java – Main program handling data loading, searching, and user interaction.
+
+CSVReader_Names and CSVReader methods – Parse actor names and movie data from CSV.
+
+How to Run
+
+Compile:
+
+javac CS245_Project01/Movie_Wall.java
+
+
+Run:
+
+java CS245_Project01.Movie_Wall path/to/movies.csv
+
+
+Then follow the prompts to search for actors. Type EXIT to quit.
+
+Notes
+
+Actor names are automatically capitalized for consistent matching.
+
+The program handles large datasets efficiently using quicksort and binary search.
+
+Similarity scoring helps suggest the most likely actor when an exact match isn’t found.
+
+Challenges & Learnings
+
+This project helped me practice:
+
+Reading and parsing CSV files.
+
+Implementing binary search and quicksort for data lookup.
+
+Designing a user-friendly command-line interface.
+
+Handling string similarity and edge cases in searches.
